@@ -168,7 +168,7 @@ export default function HomePage() {
             {categories.map((category, index) => (
               <Link
                 key={category.id}
-                to={`/products?category=${category.slug}`}
+                to={`/category/${category.slug}`}
                 className="group relative overflow-hidden rounded-2xl bg-gray-100 aspect-[3/4] shadow-lg hover:shadow-2xl transition-all duration-500"
                 style={{ animationDelay: `${index * 100}ms` }}
               >

@@ -1,11 +1,14 @@
-import React from "react";
+import React from 'react';
 import { Link } from "react-router";
 import Navbar from "@/react-app/components/Navbar";
 import Footer from "@/react-app/components/Footer";
-import { categories } from "@/react-app/data/products";
+import { categories, products } from "@/react-app/data/products";
+import ProductCard from "@/react-app/components/ProductCard";
 import { ArrowRight } from "lucide-react";
 
 export default function ProductsPage() {
+  const [showAllProducts, setShowAllProducts] = React.useState(false);
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -18,18 +21,42 @@ export default function ProductsPage() {
           </Link>
         </div>
 
-        <h2 className="text-xl font-semibold mb-6">Browse by Category</h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((cat) => (
-            <Link key={cat.id} to={`/category/${cat.slug}`}>
-              <div className="bg-white rounded-2xl shadow hover:shadow-lg transition-shadow p-4 cursor-pointer h-full">
-                <img src={cat.image} alt={cat.name} className="w-full h-48 object-cover rounded-lg mb-4" />
-                <h3 className="text-lg font-semibold hover:text-rose-600 transition-colors">{cat.name}</h3>
-                <p className="text-sm text-gray-600 mt-2">{cat.description}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
+        {!showAllProducts ? (
+          <div>
+            <h2 className="text-xl font-semibold mb-6">Browse by Category</h2>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+              {categories.map((cat) => (
+                <Link key={cat.id} to={`/category/${cat.slug}`} className="group">
+                  <div className="bg-white rounded-2xl shadow hover:shadow-lg transition-shadow p-4">
+                    <img src={cat.image} alt={cat.name} className="w-full h-48 object-cover rounded-lg mb-4" />
+                    <h3 className="text-lg font-semibold group-hover:text-rose-600 transition-colors">{cat.name}</h3>
+                    <p className="text-sm text-gray-600 mt-2">{cat.description}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <button
+              onClick={() => setShowAllProducts(true)}
+              className="text-rose-600 font-semibold hover:underline"
+            >
+              View All Products
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button
+              onClick={() => setShowAllProducts(false)}
+              className="text-rose-600 font-semibold mb-6 hover:underline"
+            >
+              ← Back to Categories
+            </button>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {products.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          </div>
+        )}
       </main>
 
       <Footer />

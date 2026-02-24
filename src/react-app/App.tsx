@@ -1,30 +1,28 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-import { CartProvider } from "@/react-app/context/CartContext";
 import HomePage from "@/react-app/pages/Home";
 import ProductsPage from "@/react-app/pages/products";
-import ProductDetails from "@/react-app/pages/ProductDetails";
-import CategoryProducts from "@/react-app/pages/CategoryProducts";
 import TamilNaduPage from "@/react-app/pages/locations/TamilNadu";
+import CategoryProducts from "@/react-app/pages/CategoryProducts";
 import AndhraPradeshPage from "@/react-app/pages/locations/AndhraPradesh";
 import KarnatakaPage from "@/react-app/pages/locations/Karnataka";
 import KeralaPage from "@/react-app/pages/locations/Kerala";
 import SouthIndiaPage from "@/react-app/pages/locations/SouthIndia";
-import WholesalePage from "@/react-app/pages/Wholesale";
+import ProductDetail from "@/react-app/pages/ProductDetail";
 import AboutPage from "@/react-app/pages/About";
 import ContactPage from "@/react-app/pages/Contact";
+import WholesalePage from "@/react-app/pages/Wholesale";
 
 export default function App() {
   return (
-    <CartProvider>
-      <Router>
-        <Routes>
+    <Router>
+      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/category/:slug" element={<CategoryProducts />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/wholesale" element={<WholesalePage />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/wholesale" element={<WholesalePage />} />
         
         {/* Tamil Nadu SEO Pages */}
         <Route path="/leggings-manufacturer-in-tamil-nadu" element={<TamilNaduPage />} />
@@ -66,8 +64,7 @@ export default function App() {
         <Route path="/south-india-leggings-wholesale-supplier" element={<SouthIndiaPage />} />
         <Route path="/bulk-leggings-supplier-in-south-india" element={<SouthIndiaPage />} />
         <Route path="/ladies-leggings-manufacturer-south-india" element={<SouthIndiaPage />} />
-        </Routes>
-      </Router>
-    </CartProvider>
+      </Routes>
+    </Router>
   );
 }

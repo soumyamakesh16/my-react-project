@@ -144,7 +144,7 @@ export default function LocationPage({ data }: LocationPageProps) {
             {categories.slice(0, 8).map((category) => (
               <Link
                 key={category.id}
-                to={`/products?category=${category.slug}`}
+                to={`/category/${category.slug}`}
                 className="group relative overflow-hidden rounded-2xl bg-gray-100 aspect-square"
               >
                 <img 
